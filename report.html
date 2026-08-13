@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Report Emergency</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+
+        body {
+            background: #f4f7fb;
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+        }
+
+        .report-container {
+            max-width: 850px;
+            margin: 45px auto;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .report-header {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .emergency-icon {
+            font-size: 50px;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            font-size: 18px;
+            padding: 12px;
+        }
+
+        .info-box {
+            border-radius: 12px;
+        }
+
+        .ai-box {
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ========================= -->
+<!-- NAVBAR -->
+<!-- ========================= -->
+
+<nav class="navbar navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="/dashboard">
+            🛡️ AI Campus Emergency Response System
+        </a>
+
+        <div>
+
+            <a href="/dashboard"
+               class="btn btn-outline-light btn-sm me-2">
+                🏠 Dashboard
+            </a>
+
+            <a href="/logout"
+               class="btn btn-warning btn-sm">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ========================= -->
+<!-- REPORT FORM -->
+<!-- ========================= -->
+
+<div class="container report-container">
+
+    <div class="report-card">
+
+
+        <!-- HEADER -->
+
+        <div class="report-header text-center">
+
+            <div class="emergency-icon">
+                🚨
+            </div>
+
+            <h2 class="fw-bold">
+                Report an Emergency
+            </h2>
+
+            <p class="mb-0">
+                Provide accurate information so the emergency
+                can be handled quickly.
+            </p>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- AI INFORMATION -->
+        <!-- ========================= -->
+
+        <div class="alert alert-info ai-box">
+
+            <h5 class="fw-bold">
+                🤖 AI Emergency Detection
+            </h5>
+
+            <p class="mb-0">
+                You do not need to select the emergency type.
+                The AI system will automatically detect the
+                emergency type from your description and
+                assign the appropriate priority.
+            </p>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- FORM -->
+        <!-- ========================= -->
+
+        <form action="/report"
+              method="POST"
+              enctype="multipart/form-data">
+
+
+            <!-- Location -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    📍 Emergency Location
+                </label>
+
+                <input type="text"
+                       name="location"
+                       class="form-control"
+                       placeholder="Enter exact campus location"
+                       required>
+
+                <small class="text-muted">
+                    Example: College Campus, Main Gate,
+                    Lab 2, Library, Classroom 101
+                </small>
+
+            </div>
+
+
+            <!-- Description -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    📝 Emergency Description
+                </label>
+
+                <textarea name="description"
+                          class="form-control"
+                          rows="5"
+                          placeholder="Describe what happened..."
+                          required></textarea>
+
+                <small class="text-muted">
+                    Describe the emergency clearly.
+                    AI will analyze this description.
+                </small>
+
+            </div>
+
+
+            <!-- Image -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    📷 Upload Image
+                </label>
+
+                <input type="file"
+                       name="image"
+                       class="form-control"
+                       accept="image/*">
+
+                <small class="text-muted">
+                    Upload an image related to the emergency
+                    if available.
+                </small>
+
+            </div>
+
+
+            <!-- AI PROCESS -->
+
+            <div class="alert alert-secondary info-box">
+
+                <strong>🤖 AI Processing:</strong>
+
+                <ul class="mb-0 mt-2">
+
+                    <li>
+                        AI will detect the emergency type.
+                    </li>
+
+                    <li>
+                        AI will calculate the emergency priority.
+                    </li>
+
+                    <li>
+                        The report will be stored securely
+                        in the database.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- WARNING -->
+
+            <div class="alert alert-warning info-box">
+
+                <strong>⚠️ Important:</strong>
+
+                Please enter the correct location and
+                emergency details before submitting.
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="d-flex gap-2">
+
+                <a href="/dashboard"
+                   class="btn btn-secondary w-50">
+
+                    🔙 Back
+
+                </a>
+
+                <button type="submit"
+                        class="btn btn-danger w-50 submit-btn">
+
+                    🚨 Submit Emergency Report
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+
+    <p class="mb-0">
+        © 2026 AI Campus Emergency Response System
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
