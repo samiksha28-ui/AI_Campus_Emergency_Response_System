@@ -1,5 +1,0 @@
-Flask
-mysql-connector-python
-scikit-learn
-Werkzeug
-gunicorn
