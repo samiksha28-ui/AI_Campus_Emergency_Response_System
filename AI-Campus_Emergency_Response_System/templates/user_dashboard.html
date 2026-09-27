@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+
+        body {
+            background: #f4f7fb;
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            color: white;
+            border-radius: 20px;
+            padding: 45px 30px;
+            margin-top: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-card {
+            border: none;
+            border-radius: 18px;
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .icon {
+            font-size: 45px;
+        }
+
+        .footer {
+            margin-top: 70px;
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ========================= -->
+<!-- NAVBAR -->
+<!-- ========================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="/">
+            🛡️ AI Campus Emergency Response System
+        </a>
+
+        <div class="navbar-nav ms-auto">
+
+            <span class="nav-link text-white">
+                👋 Welcome, {{ session.get("user_name", "User") }}
+            </span>
+
+            <a class="nav-link" href="/myreports">
+                📋 My Reports
+            </a>
+
+            <a class="nav-link text-warning" href="/logout">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ========================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================= -->
+
+<div class="container">
+
+
+    <!-- HERO -->
+
+    <div class="hero text-center">
+
+        <h1 class="fw-bold">
+            Welcome to Your Dashboard 👋
+        </h1>
+
+        <p class="lead mt-3">
+            Report campus emergencies quickly and track your reports.
+        </p>
+
+        <a href="/report"
+           class="btn btn-danger btn-lg mt-3">
+
+            🚨 Report Emergency
+
+        </a>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- OPTIONS -->
+    <!-- ========================= -->
+
+    <div class="row g-4 mt-4">
+
+
+        <!-- Report Emergency -->
+
+        <div class="col-md-4">
+
+            <div class="card feature-card shadow p-4 text-center">
+
+                <div class="icon">
+                    🚨
+                </div>
+
+                <h4 class="mt-3">
+                    Report Emergency
+                </h4>
+
+                <p class="text-muted">
+                    Report medical, fire, accident,
+                    security or other campus emergencies.
+                </p>
+
+                <a href="/report"
+                   class="btn btn-danger">
+
+                    Report Now
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- My Reports -->
+
+        <div class="col-md-4">
+
+            <div class="card feature-card shadow p-4 text-center">
+
+                <div class="icon">
+                    📋
+                </div>
+
+                <h4 class="mt-3">
+                    My Reports
+                </h4>
+
+                <p class="text-muted">
+                    View your submitted emergency
+                    reports and their current status.
+                </p>
+
+                <a href="/myreports"
+                   class="btn btn-primary">
+
+                    View Reports
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Contact -->
+
+        <div class="col-md-4">
+
+            <div class="card feature-card shadow p-4 text-center">
+
+                <div class="icon">
+                    📞
+                </div>
+
+                <h4 class="mt-3">
+                    Contact Support
+                </h4>
+
+                <p class="text-muted">
+                    Need help? Contact the campus
+                    emergency support office.
+                </p>
+
+                <a href="/contact"
+                   class="btn btn-success">
+
+                    Contact Us
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- EMERGENCY INFORMATION -->
+    <!-- ========================= -->
+
+    <div class="alert alert-warning mt-5 text-center">
+
+        <h5 class="fw-bold">
+            ⚠️ Important
+        </h5>
+
+        <p class="mb-0">
+            In case of an emergency, submit a report
+            immediately with the correct location
+            and description.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="footer bg-dark text-white text-center">
+
+    <p class="mb-0">
+        © 2026 AI Campus Emergency Response System
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

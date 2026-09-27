@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Emergency Reports</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+
+        body {
+            background: #f4f7fb;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            color: white;
+            border-radius: 18px;
+            padding: 30px;
+            margin-top: 35px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .report-card {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 100%;
+            transition: 0.3s;
+        }
+
+        .report-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .report-image {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .no-image {
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e9ecef;
+            color: #6c757d;
+            font-size: 18px;
+        }
+
+        .status-pending {
+            background: #dc3545;
+        }
+
+        .status-progress {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .status-resolved {
+            background: #198754;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ========================= -->
+<!-- NAVBAR -->
+<!-- ========================= -->
+
+<nav class="navbar navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="/dashboard">
+            🛡️ AI Campus Emergency Response System
+        </a>
+
+        <div>
+
+            <a href="/dashboard"
+               class="btn btn-outline-light btn-sm me-2">
+                🏠 Dashboard
+            </a>
+
+            <a href="/logout"
+               class="btn btn-warning btn-sm">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ========================= -->
+<!-- MAIN -->
+<!-- ========================= -->
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="page-header text-center">
+
+        <h1 class="fw-bold">
+            📋 My Emergency Reports
+        </h1>
+
+        <p class="mb-0">
+            View your submitted emergency reports
+            and their current status.
+        </p>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- REPORTS -->
+    <!-- ========================= -->
+
+    {% if reports %}
+
+    <div class="row g-4 mt-2">
+
+        {% for report in reports %}
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card report-card shadow">
+
+
+                <!-- IMAGE -->
+
+                {% if report.image %}
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='uploads/' ~ report.image
+                        ) }}"
+                        class="report-image"
+                        alt="Emergency Image">
+
+                {% else %}
+
+                    <div class="no-image">
+                        📷 No Image
+                    </div>
+
+                {% endif %}
+
+
+                <!-- CARD BODY -->
+
+                <div class="card-body">
+
+
+                    <!-- Emergency Type -->
+
+                    <h4 class="card-title fw-bold">
+
+                        {% if report.emergency_type == "Medical" %}
+                            🏥
+                        {% elif report.emergency_type == "Fire" %}
+                            🔥
+                        {% elif report.emergency_type == "Accident" %}
+                            🚗
+                        {% elif report.emergency_type == "Security" %}
+                            🛡️
+                        {% else %}
+                            ⚠️
+                        {% endif %}
+
+                        {{ report.emergency_type }}
+
+                    </h4>
+
+
+                    <!-- Location -->
+
+                    <p class="mb-2">
+
+                        <strong>📍 Location:</strong><br>
+
+                        {{ report.location }}
+
+                    </p>
+
+
+                    <!-- Description -->
+
+                    <p class="mb-3">
+
+                        <strong>📝 Description:</strong><br>
+
+                        {{ report.description }}
+
+                    </p>
+
+
+                    <!-- Status -->
+
+                    <strong>Status:</strong>
+
+                    {% if report.status == "Pending" %}
+
+                        <span class="badge status-pending">
+                            ⏳ Pending
+                        </span>
+
+                    {% elif report.status == "In Progress" %}
+
+                        <span class="badge status-progress">
+                            🔄 In Progress
+                        </span>
+
+                    {% elif report.status == "Resolved" %}
+
+                        <span class="badge status-resolved">
+                            ✅ Resolved
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge bg-secondary">
+                            {{ report.status }}
+                        </span>
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+    <!-- NO REPORTS -->
+
+    <div class="alert alert-info text-center mt-5">
+
+        <h4>
+            📋 No Emergency Reports
+        </h4>
+
+        <p>
+            You have not submitted any emergency reports yet.
+        </p>
+
+        <a href="/report"
+           class="btn btn-danger">
+
+            🚨 Report Emergency
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- BACK BUTTON -->
+
+    <div class="text-center my-5">
+
+        <a href="/dashboard"
+           class="btn btn-secondary">
+
+            🔙 Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="bg-dark text-white text-center py-3">
+
+    <p class="mb-0">
+        © 2026 AI Campus Emergency Response System
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
